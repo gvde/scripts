@@ -276,6 +276,7 @@ function identifyOS {
         MARIADB_UNIT="mariadb"
         MEMCACHED_UNIT="memcached"
         PHP_FPM_UNIT="php-fpm"
+
     elif [[ "$NAME" == "CentOS Linux" && "$VERSION_ID" == "8" ]]; then
         abort "Warning: This OS is not officially supported by i-doit"
 
@@ -306,9 +307,11 @@ function identifyOS {
         MARIADB_UNIT="mysql"
         MEMCACHED_UNIT="memcached"
         PHP_FPM_UNIT="php8.2-fpm"
+    
     elif [[ "$NAME" == "Debian GNU/Linux" && "$VERSION" == "11 (bullseye)" ]]; then
         export DEBIAN_FRONTEND="noninteractive"
         abort "Error: Debian 11 is out-dated. It's not supported anymore. Please upgrade."
+
         OS="debian11"
         APACHE_USER="www-data"
         APACHE_GROUP="www-data"
@@ -321,10 +324,13 @@ function identifyOS {
         MARIADB_UNIT="mysql"
         MEMCACHED_UNIT="memcached"
         PHP_FPM_UNIT="php7.4-fpm"
+    
     elif [[ "$NAME" == "Debian GNU/Linux" && "$VERSION" == "10 (buster)" ]]; then
         abort "Error: This version of Debian GNU/Linux is not supported anymore. Please upgrade to Debian 12."
+    
     elif [[ "$NAME" == "Debian GNU/Linux" && "$VERSION" == "9 (stretch)" ]]; then
         abort "Error: This version of Debian GNU/Linux is not supported anymore. Please upgrade to Debian 12."
+    
     elif [[ "$NAME" == "Debian GNU/Linux" && "$VERSION" == "8 (jessie)" ]]; then
         abort "Error: This version of Debian GNU/Linux is not supported anymore. Please upgrade to Debian 12."
     elif [[ ( "$ID" == "rhel" || "$ID_LIKE" =~ (^| )fedora($| ) ) && "$PLATFORM_ID" =~ ^platform:el9$ ]] ; then
@@ -340,6 +346,7 @@ function identifyOS {
         MARIADB_UNIT="mariadb"
         MEMCACHED_UNIT="memcached"
         PHP_FPM_UNIT="php-fpm"
+
     elif [[ ( "$ID" == "rhel" || "$ID_LIKE" =~ (^| )fedora($| ) ) && "$PLATFORM_ID" =~ ^platform:el8$ ]] ; then
         OS="el8"
         APACHE_USER="apache"
@@ -353,8 +360,10 @@ function identifyOS {
         MARIADB_UNIT="mariadb"
         MEMCACHED_UNIT="memcached"
         PHP_FPM_UNIT="php-fpm"
+
     elif [[ "$NAME" == "Red Hat Enterprise Linux Server" && "$VERSION_ID" == 7* ]]; then
         abort "Warning: RHEL 7 is out-dated. Please consider to upgrade your OS."
+
         OS="rhel7"
         APACHE_USER="apache"
         APACHE_GROUP="apache"
@@ -367,6 +376,73 @@ function identifyOS {
         MARIADB_UNIT="mariadb"
         MEMCACHED_UNIT="memcached"
         PHP_FPM_UNIT="php-fpm"
+
+    elif [[ "$NAME" == "AlmaLinux" && "$VERSION_ID" == "9*" ]]: then
+        log "Warning": "Warning: This OS is not officially supported by i-doit"
+
+        OS="alma9"
+        APACHE_USER="apache"
+        APACHE_GROUP="apache"
+        APACHE_CONFIG_FILE="/etc/httpd/conf.d/i-doit.conf"
+        MARIADB_CONFIG_FILE="/etc/my.cnf.d/99-i-doit.cnf"
+        PHP_CONFIG_FILE="/etc/php.d/i-doit.ini"
+        MARIADB_SOCKET="/var/lib/mysql/mysql.sock"
+        PHP_FPM_SOCKET="/var/run/php-fpm/php-fpm.sock"
+        APACHE_UNIT="httpd"
+        MARIADB_UNIT="mariadb"
+        MEMCACHED_UNIT="memcached"
+        PHP_FPM_UNIT="php-fpm"
+
+    elif [[ "$NAME" == "AlmaLinux" && "$VERSION_ID" == "8*" ]]: then
+        log "Warning": "Warning: This OS is not officially supported by i-doit"
+        abort "Warning: This OS is not officially supported by i-doit"
+
+        OS="alma8"
+        APACHE_USER="apache"
+        APACHE_GROUP="apache"
+        APACHE_CONFIG_FILE="/etc/httpd/conf.d/i-doit.conf"
+        MARIADB_CONFIG_FILE="/etc/my.cnf.d/99-i-doit.cnf"
+        PHP_CONFIG_FILE="/etc/php.d/i-doit.ini"
+        MARIADB_SOCKET="/var/lib/mysql/mysql.sock"
+        PHP_FPM_SOCKET="/var/run/php-fpm/php-fpm.sock"
+        APACHE_UNIT="httpd"
+        MARIADB_UNIT="mariadb"
+        MEMCACHED_UNIT="memcached"
+        PHP_FPM_UNIT="php-fpm"
+
+    elif [[ "$NAME" == "Rocky Linux" && "$VERSION_ID" == "9*" ]]: then
+        log "Warning": "Warning: This OS is not officially supported by i-doit"
+
+        OS="rocky9"
+        APACHE_USER="apache"
+        APACHE_GROUP="apache"
+        APACHE_CONFIG_FILE="/etc/httpd/conf.d/i-doit.conf"
+        MARIADB_CONFIG_FILE="/etc/my.cnf.d/99-i-doit.cnf"
+        PHP_CONFIG_FILE="/etc/php.d/i-doit.ini"
+        MARIADB_SOCKET="/var/lib/mysql/mysql.sock"
+        PHP_FPM_SOCKET="/var/run/php-fpm/php-fpm.sock"
+        APACHE_UNIT="httpd"
+        MARIADB_UNIT="mariadb"
+        MEMCACHED_UNIT="memcached"
+        PHP_FPM_UNIT="php-fpm"
+
+    elif [[ "$NAME" == "Rocky Linux" && "$VERSION_ID" == "8*" ]]: then
+        log "Warning": "Warning: This OS is not officially supported by i-doit"
+        abort "Warning: This OS is not officially supported by i-doit"
+
+        OS="rocky8"
+        APACHE_USER="apache"
+        APACHE_GROUP="apache"
+        APACHE_CONFIG_FILE="/etc/httpd/conf.d/i-doit.conf"
+        MARIADB_CONFIG_FILE="/etc/my.cnf.d/99-i-doit.cnf"
+        PHP_CONFIG_FILE="/etc/php.d/i-doit.ini"
+        MARIADB_SOCKET="/var/lib/mysql/mysql.sock"
+        PHP_FPM_SOCKET="/var/run/php-fpm/php-fpm.sock"
+        APACHE_UNIT="httpd"
+        MARIADB_UNIT="mariadb"
+        MEMCACHED_UNIT="memcached"
+        PHP_FPM_UNIT="php-fpm"
+
     elif [[ "$NAME" == "SLES" && "$VERSION" == 15* ]]; then
 
         OS="sles15"
@@ -382,8 +458,10 @@ function identifyOS {
         MARIADB_UNIT="mariadb"
         MEMCACHED_UNIT="memcached"
         PHP_FPM_UNIT="php-fpm"
+
     elif [[ "$NAME" = "SLES" && "$VERSION_ID" == 12* ]]; then
         abort "Error: SLES 12 is out-dated. It's not supported anymore. Please upgrade."
+
     elif [[ "$NAME" == "openSUSE Leap" && "$VERSION" == 15* ]]; then
 
         OS="opensuse15"
@@ -399,8 +477,10 @@ function identifyOS {
         MARIADB_UNIT="mariadb"
         MEMCACHED_UNIT="memcached"
         PHP_FPM_UNIT="php-fpm"
+
     elif [[ "$NAME" = "openSUSE" && "$VERSION_ID" == 12* ]]; then
         abort "Error: openSUSE 12 is out-dated. It's not supported anymore. Please upgrade."
+
     elif [[ "$NAME" == "Ubuntu" && "$VERSION_ID" == "24.04" ]]; then
         export DEBIAN_FRONTEND="noninteractive"
         OS="ubuntu2404"
@@ -415,6 +495,7 @@ function identifyOS {
         MARIADB_UNIT="mysql"
         MEMCACHED_UNIT="memcached"
         PHP_FPM_UNIT="php8.3-fpm"
+
     elif [[ "$NAME" == "Ubuntu" && "$VERSION_ID" == "22.04" ]]; then
         export DEBIAN_FRONTEND="noninteractive"
 
@@ -430,6 +511,7 @@ function identifyOS {
         MARIADB_UNIT="mysql"
         MEMCACHED_UNIT="memcached"
         PHP_FPM_UNIT="php8.1-fpm"
+
     elif [[ "$NAME" == "Ubuntu" && "$VERSION_ID" == "20.04" ]]; then
         export DEBIAN_FRONTEND="noninteractive"
         abort "Error: Ubuntu 20.04 is out-dated. It's not supported anymore. Please upgrade."
@@ -445,10 +527,13 @@ function identifyOS {
         MARIADB_UNIT="mysql"
         MEMCACHED_UNIT="memcached"
         PHP_FPM_UNIT="php7.4-fpm"
+
     elif [[ "$NAME" == "Ubuntu" && "$VERSION_ID" == "18.04" ]]; then
         abort "Error: Ubuntu 18.04 is out-dated. It's not supported anymore. Please upgrade."
+
     elif [[ "$NAME" == "Ubuntu" && "$VERSION_ID" == "16.04" ]]; then
         abort "Error: Ubuntu 16.04 is out-dated. It's not supported anymore. Please upgrade."
+
     else
         abort "Operating system ${PRETTY_NAME} is not supported"
     fi
@@ -520,7 +605,7 @@ function checkSoftwareRequirements {
     binaries["memcached"]=$(command -v memcached)
 
     case "$OS" in
-    "rhel7" | "el8" | "el9" | "centos7" | "centos8")
+    "rhel7" | "el8" | "el9" | "centos7" | "centos8" | "alma8" | "alma9" | "rocky8" | "rocky9" )
         binaries["httpd"]=$(command -v httpd)
         ;;
     *)
@@ -612,6 +697,18 @@ function configureOS {
         ;;
     "opensuse15")
         configureOpenSuse15
+        ;;
+    "alma8")
+        configurealma8
+        ;;
+    "alma9")
+        configurealma9
+        ;;
+    "rocky8")
+        configurerocky8
+        ;;
+    "rocky9")
+        configurerocky9
         ;;
     *)
         abort "Unkown operating system '${OS}'!?!"
@@ -876,6 +973,192 @@ function configureEL9 {
         firewall-cmd --reload
     fi
 }
+
+function configurealma9 {
+    log "Check for available updates on your system"
+    dnf --quiet check-update > /dev/null || abort "Please install all available updates"
+
+    for appStream in mariadb:10.11 php:8.3; do
+        log "Install AppStream $appStream"
+        dnf --assumeyes --quiet module install "$appStream"
+    done
+
+    log "Install some important packages"
+    dnf --assumeyes --quiet install \
+        httpd memcached unzip boost-program-options wget zip \
+        php-{bcmath,curl,gd,json,ldap,mysqli,mysqlnd,odbc,pecl-zip,pgsql,pdo,snmp,soap,zip} || abort "Unable to install packages"
+
+    # Is used to install moreutils which provides chronic which is needed for the idoit-jobs
+    if ! dnf --quiet list moreutils > /dev/null; then
+	log "Install epel-release for EPEL9 repository"
+	dnf --assumeyes --quiet install epel-release || abort "Unable to install epel-release. Please make sure that epel repository is available."
+	# update the package if a newer version is available from epel directly
+	dnf --assumeyes --quiet update epel-release || abort "Unable to update epel-release."
+    fi
+
+    # Provides dependencies for moreutils
+    if [[ "$ID" == "almalinux" ]] ; then
+	    log "Enable crb repository"
+	    dnf config-manager --set-enabled crb || abort "Unable to enable crb repository"
+    fi
+
+    log "Install moreutils with all dependencies"
+    dnf --assumeyes --quiet install moreutils || abort "Unable to install moreutils"
+
+    for unit in $APACHE_UNIT $MARIADB_UNIT $MEMCACHED_UNIT $PHP_FPM_UNIT; do
+        unitctl "enable" "$unit"
+        unitctl "start" "$unit"
+    done
+
+    if ! systemctl -q is-active firewalld.service ; then
+        log "firewalld is not active. Please make sure that tcp ports 80 (http) and 443 (https) are open!"
+    else
+        log "Allow incoming HTTP traffic"
+
+        firewall-cmd --permanent --add-service=http --add-service=https || abort "Unable to configure firewall"
+        firewall-cmd --reload
+    fi
+}
+
+function configurealma8 {
+    log "Check for available updates on your system"
+    dnf --quiet check-update > /dev/null || abort "Please install all available updates"
+
+    for appStream in mariadb:10.11 php:8.3; do
+        log "Install AppStream $appStream"
+        dnf --assumeyes --quiet module install "$appStream"
+    done
+
+    log "Install some important packages"
+    dnf --assumeyes --quiet install \
+        httpd memcached unzip boost-program-options wget zip \
+        php-{bcmath,curl,gd,json,ldap,mysqli,mysqlnd,odbc,pecl-zip,pgsql,pdo,snmp,soap,zip} || abort "Unable to install packages"
+
+    # Is used to install moreutils which provides chronic which is needed for the idoit-jobs
+    if ! dnf --quiet list moreutils > /dev/null; then
+	log "Install epel-release for EPEL9 repository"
+	dnf --assumeyes --quiet install epel-release || abort "Unable to install epel-release. Please make sure that epel repository is available."
+	# update the package if a newer version is available from epel directly
+	dnf --assumeyes --quiet update epel-release || abort "Unable to update epel-release."
+    fi
+
+    # Provides dependencies for moreutils
+    if [[ "$ID" == "almalinux" ]] ; then
+	    log "Enable crb repository"
+	    dnf config-manager --set-enabled crb || abort "Unable to enable crb repository"
+    fi
+
+    log "Install moreutils with all dependencies"
+    dnf --assumeyes --quiet install moreutils || abort "Unable to install moreutils"
+
+    for unit in $APACHE_UNIT $MARIADB_UNIT $MEMCACHED_UNIT $PHP_FPM_UNIT; do
+        unitctl "enable" "$unit"
+        unitctl "start" "$unit"
+    done
+
+    if ! systemctl -q is-active firewalld.service ; then
+        log "firewalld is not active. Please make sure that tcp ports 80 (http) and 443 (https) are open!"
+    else
+        log "Allow incoming HTTP traffic"
+
+        firewall-cmd --permanent --add-service=http --add-service=https || abort "Unable to configure firewall"
+        firewall-cmd --reload
+    fi
+}
+
+
+function configurerocky9 {
+    log "Check for available updates on your system"
+    dnf --quiet check-update > /dev/null || abort "Please install all available updates"
+
+    for appStream in mariadb:10.11 php:8.3; do
+        log "Install AppStream $appStream"
+        dnf --assumeyes --quiet module install "$appStream"
+    done
+
+    log "Install some important packages"
+    dnf --assumeyes --quiet install \
+        httpd memcached unzip boost-program-options wget zip \
+        php-{bcmath,curl,gd,json,ldap,mysqli,mysqlnd,odbc,pecl-zip,pgsql,pdo,snmp,soap,zip} || abort "Unable to install packages"
+
+    # Is used to install moreutils which provides chronic which is needed for the idoit-jobs
+    if ! dnf --quiet list moreutils > /dev/null; then
+	log "Install epel-release for EPEL9 repository"
+	dnf --assumeyes --quiet install epel-release || abort "Unable to install epel-release. Please make sure that epel repository is available."
+	# update the package if a newer version is available from epel directly
+	dnf --assumeyes --quiet update epel-release || abort "Unable to update epel-release."
+    fi
+
+    # Provides dependencies for moreutils
+    if [[ "$ID" == "rocky" ]] ; then
+	    log "Enable crb repository"
+	    dnf config-manager --set-enabled crb || abort "Unable to enable crb repository"
+    fi
+
+    log "Install moreutils with all dependencies"
+    dnf --assumeyes --quiet install moreutils || abort "Unable to install moreutils"
+
+    for unit in $APACHE_UNIT $MARIADB_UNIT $MEMCACHED_UNIT $PHP_FPM_UNIT; do
+        unitctl "enable" "$unit"
+        unitctl "start" "$unit"
+    done
+
+    if ! systemctl -q is-active firewalld.service ; then
+        log "firewalld is not active. Please make sure that tcp ports 80 (http) and 443 (https) are open!"
+    else
+        log "Allow incoming HTTP traffic"
+
+        firewall-cmd --permanent --add-service=http --add-service=https || abort "Unable to configure firewall"
+        firewall-cmd --reload
+    fi
+}
+
+function configurerocky8 {
+    log "Check for available updates on your system"
+    dnf --quiet check-update > /dev/null || abort "Please install all available updates"
+
+    for appStream in mariadb:10.11 php:8.3; do
+        log "Install AppStream $appStream"
+        dnf --assumeyes --quiet module install "$appStream"
+    done
+
+    log "Install some important packages"
+    dnf --assumeyes --quiet install \
+        httpd memcached unzip boost-program-options wget zip \
+        php-{bcmath,curl,gd,json,ldap,mysqli,mysqlnd,odbc,pecl-zip,pgsql,pdo,snmp,soap,zip} || abort "Unable to install packages"
+
+    # Is used to install moreutils which provides chronic which is needed for the idoit-jobs
+    if ! dnf --quiet list moreutils > /dev/null; then
+	log "Install epel-release for EPEL9 repository"
+	dnf --assumeyes --quiet install epel-release || abort "Unable to install epel-release. Please make sure that epel repository is available."
+	# update the package if a newer version is available from epel directly
+	dnf --assumeyes --quiet update epel-release || abort "Unable to update epel-release."
+    fi
+
+    # Provides dependencies for moreutils
+    if [[ "$ID" == "rocky" ]] ; then
+	    log "Enable crb repository"
+	    dnf config-manager --set-enabled crb || abort "Unable to enable crb repository"
+    fi
+
+    log "Install moreutils with all dependencies"
+    dnf --assumeyes --quiet install moreutils || abort "Unable to install moreutils"
+
+    for unit in $APACHE_UNIT $MARIADB_UNIT $MEMCACHED_UNIT $PHP_FPM_UNIT; do
+        unitctl "enable" "$unit"
+        unitctl "start" "$unit"
+    done
+
+    if ! systemctl -q is-active firewalld.service ; then
+        log "firewalld is not active. Please make sure that tcp ports 80 (http) and 443 (https) are open!"
+    else
+        log "Allow incoming HTTP traffic"
+
+        firewall-cmd --permanent --add-service=http --add-service=https || abort "Unable to configure firewall"
+        firewall-cmd --reload
+    fi
+}
+
 
 function configureEL8 {
     log "Check for available updates on your system"
@@ -1187,13 +1470,13 @@ function configurePHP {
         abort "PHP ${php_version} is way too old. Please upgrade. We recommend version ${RECOMMENDED_PHP_VERSION}."
         ;;
     "8.0")
-        php_en_mod=$(command -v phpenmod)
+        abort "PHP ${php_version} is way too old. Please upgrade. We recommend version ${RECOMMENDED_PHP_VERSION}."
         ;;
     "8.1")
-        php_en_mod=$(command -v phpenmod)
+        abort "PHP ${php_version} is way too old. Please upgrade. We recommend version ${RECOMMENDED_PHP_VERSION}."
         ;;
     "8.2")
-        php_en_mod=$(command -v phpenmod)
+        abort "PHP ${php_version} is way too old. Please upgrade. We recommend version ${RECOMMENDED_PHP_VERSION}."
         ;;
     "8.3")
         php_en_mod=$(command -v phpenmod)
@@ -1218,7 +1501,7 @@ post_max_size = 128M
 register_argc_argv = On
 register_globals = Off
 short_open_tag = On
-upload_max_filesize = 128M
+upload_max_filesize = 512M
 display_errors = Off
 display_startup_errors = Off
 error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT
@@ -1247,7 +1530,7 @@ function configurePHPFPM {
     "debian11" | "debian12" | "ubuntu2004" | "ubuntu2204" | "ubuntu2404")
         unitctl "restart" "$PHP_FPM_UNIT"
         ;;
-    "rhel7" | "el8" | "el9" | "centos7" | "centos8")
+    "rhel7" | "el8" | "el9" | "centos7" | "centos8" | "alma8" | "alma9" | "rocky8" | "rocky9" )
         log "Disable default configuration file"
         mv /etc/php-fpm.d/www.conf{,.bak} || abort "Unable to disable default configuration file"
         log "Put new settings into file '/etc/php-fpm.d/i-doit.conf'"
@@ -1308,7 +1591,7 @@ function configureApache {
     hostname="$(cat /etc/hostname)"
 
     case "$OS" in
-    "rhel7" | "el8" | "el9"  | "centos7" | "centos8")
+    "rhel7" | "el8" | "el9"  | "centos7" | "centos8" | "alma8" | "alma9" | "rocky8" | "rocky9" )
         cat <<EOF >${APACHE_CONFIG_FILE} || abort "Unable to create and edit file '${APACHE_CONFIG_FILE}'"
 DirectoryIndex index.php
 DocumentRoot ${INSTALL_DIR}/
@@ -1665,7 +1948,7 @@ function secureMariaDB {
     esac
 
     case "$OS" in
-    "rhel7" | "el8" | "el9" | "centos7" | "centos8")
+    "rhel7" | "el8" | "el9" | "centos7" | "centos8" | "alma8" | "alma9" | "rocky8" | "rocky9" )
         log "Allow $MARIADB_SUPERUSER_USERNAME login only from localhost"
         "$MARIADB_BIN" \
             -h"$MARIADB_HOSTNAME" \
